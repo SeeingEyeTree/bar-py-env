@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "WebSearch",
+      "WebFetch(domain:www.mcours.net)",
+      "WebFetch(domain:springrts.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(python -c ' *)",
+      "Bash(ls -la /tmp/Beyond-All-Reason/ 2>&1 | head -30)",
+      "Read(//tmp/**)",
+      "Bash(cat > *)",
+      "Bash(xargs -I {} basename {} .lua)",
+      "Bash(ls \"C:/Users/malco/OneDrive/Documents/GitHub/Beyond-All-Reason-project/units/\" | head -20 *)",
+      "Read(//c/Users/malco/OneDrive/Documents/GitHub/Beyond-All-Reason-project/units/**)",
+      "Read(//c/Users/malco/OneDrive/Documents/GitHub/Beyond-All-Reason-project/units/CorVehicles/**)",
+      "Read(//c/Users/malco/OneDrive/Documents/GitHub/Beyond-All-Reason-project/units/CorBuildings/**)",
+      "Bash(# Confirm T1 vehicle plant and raider names for both factions *)",
+      "Read(//c/Users/malco/AppData/Local/Programs/Beyond-All-Reason/data/AI/**)",
+      "Read(//c/Users/malco/AppData/Local/Programs/Beyond-All-Reason/**)",
+      "Read(//c/Users/malco/OneDrive/Documents/GitHub/Beyond-All-Reason-project/**)"
+    ],
+    "additionalDirectories": [
+      "\\tmp"
+    ]
+  }
+}

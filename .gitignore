@@ -1,0 +1,21 @@
+# Engine and run artifacts
+/engine/
+/run/
+/cache/
+*.7z
+*.sdfz
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
