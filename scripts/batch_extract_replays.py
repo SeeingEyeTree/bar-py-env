@@ -3,17 +3,19 @@
 
 Scans --in-dir for .sdfz files and skips those that can't be played back:
   - Engine version mismatch: the demo was recorded with a different Spring
-    engine binary than what's installed (always skipped — downloading game
-    archives cannot fix this).
-  - Game content version mismatch: the demo's BAR game version isn't
-    installed locally (skipped unless --allow-download is set, which fetches
-    the required archive via pr-downloader before each extraction).
+    engine binary than what's installed (always skipped — this requires
+    re-fetching the engine binary, not just the game archive).
   - Already extracted: an output file already exists in --out-dir.
+
+Game content version mismatches are handled automatically: pr-downloader
+fetches the required BAR archive before each extraction (a no-op when the
+archive is already cached). Pass --no-auto-download to disable this and skip
+replays whose game version isn't already installed.
 
 Usage:
     python scripts/batch_extract_replays.py
     python scripts/batch_extract_replays.py --in-dir D:/BAR_Replays/Human_Pretraining --out-dir D:/BAR_Replays/training_data
-    python scripts/batch_extract_replays.py --allow-download
+    python scripts/batch_extract_replays.py --no-auto-download
 """
 
 from __future__ import annotations
@@ -54,11 +56,10 @@ def main() -> int:
                    help="Headless gamespeed multiplier (default: 20)")
     p.add_argument("--step-interval", type=int, default=30,
                    help="Engine frames between observations (default: 30 = 1 s)")
-    p.add_argument("--allow-download", action="store_true",
-                   help="Use pr-downloader to fetch missing game archives for "
-                        "replays whose BAR game version isn't installed. Each "
-                        "archive is ~50-150 MB. Does NOT help with engine-version "
-                        "mismatches (those replays are always skipped).")
+    p.add_argument("--no-auto-download", action="store_true",
+                   help="Skip replays whose BAR game version isn't already "
+                        "installed instead of fetching it via pr-downloader. "
+                        "Does not affect engine-version mismatches (always skipped).")
     args = p.parse_args()
 
     if not args.in_dir.exists():
@@ -75,9 +76,11 @@ def main() -> int:
     print(f"Output dir       : {args.out_dir}")
     print(f"Engine version   : {engine_ver or '(unknown)'}")
     print(f"Installed BAR    : {installed_ver or '(unknown)'}")
+    print(f"Auto-download    : {'yes (pr-downloader)' if not args.no_auto_download else 'no'}")
     print(f"Replays found    : {len(replays)}")
     print()
 
+    auto_download   = not args.no_auto_download
     n_done = n_skipped_exists = n_skipped_engine = n_skipped_ver = n_failed = 0
 
     for i, replay in enumerate(replays, 1):
@@ -90,17 +93,23 @@ def main() -> int:
             n_skipped_exists += 1
             continue
 
-        # Engine version check: Spring only plays back demos from the exact
-        # same engine binary version. Downloading game archives won't fix this.
-        if engine_ver:
-            demo_eng = get_demo_engine_version(replay)
-            if demo_eng and demo_eng != engine_ver:
-                print(f"{prefix}  ->  skip (engine mismatch: demo={demo_eng}, ours={engine_ver})")
+        # Engine version check: find a matching binary from ENGINE_DIR.
+        # If the demo's engine version isn't installed, skip — downloading game
+        # archives cannot fix engine binary mismatches.
+        demo_eng = get_demo_engine_version(replay)
+        if demo_eng:
+            from bar_env.config import ENGINE_DIR
+            eng_candidates = list(ENGINE_DIR.glob(f"**/*{demo_eng}*/spring-headless.exe"))
+            eng_candidates += list(ENGINE_DIR.glob(f"**/*{demo_eng}*/spring-headless"))
+            if not eng_candidates:
+                print(f"{prefix}  ->  skip (engine {demo_eng} not installed; "
+                      f"run: python scripts/fetch_engine.py)")
                 n_skipped_engine += 1
                 continue
 
-        # Game content version check.
-        if installed_ver and not args.allow_download:
+        # Game content version check — only hard-skip when auto-download is off.
+        # When auto-download is on, extract() calls pr-downloader as needed.
+        if not auto_download and installed_ver:
             demo_ver = get_demo_game_type(replay)
             if demo_ver != installed_ver:
                 print(f"{prefix}  ->  skip (game version mismatch: {demo_ver})")
@@ -116,7 +125,8 @@ def main() -> int:
                 step_interval=args.step_interval,
                 speed=args.speed,
                 compact=True,
-                fetch_missing_archive=args.allow_download,
+                fetch_missing_archive=auto_download,
+                engine_version=demo_eng,
             ))
             size_kb = out_path.stat().st_size / 1024
             print(

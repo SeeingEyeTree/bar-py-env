@@ -71,8 +71,14 @@ def default_bar_data_dir() -> Path:
     return Path.home() / ".local" / "share" / "Beyond-All-Reason" / "data"
 
 
-def headless_binary() -> Path:
-    """Find spring-headless(.exe) inside ENGINE_DIR. Raises if absent."""
+def headless_binary(engine_version: str | None = None) -> Path:
+    """Find spring-headless(.exe) inside ENGINE_DIR.
+
+    If engine_version is given (e.g. "2025.06.24"), returns the binary from
+    a folder whose name contains that version. Falls back to the
+    lexicographically-latest folder (= highest version) when no match exists
+    or no version is specified.
+    """
     if not ENGINE_DIR.exists():
         raise FileNotFoundError(
             f"Engine directory not found: {ENGINE_DIR}\n"
@@ -86,4 +92,11 @@ def headless_binary() -> Path:
             f"No spring-headless binary found under {ENGINE_DIR}.\n"
             f"Run: python scripts/fetch_engine.py"
         )
+    if engine_version:
+        matching = [c for c in candidates if engine_version in str(c)]
+        if matching:
+            return matching[0]
+    # Pick highest version by folder name (lexicographic order is correct for
+    # "YYYY.MM.DD" version strings).
+    candidates.sort(key=lambda p: str(p.parent), reverse=True)
     return candidates[0]

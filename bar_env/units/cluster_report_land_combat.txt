@@ -1,0 +1,41 @@
+BAR unit clustering report
+model: {'model': 'kmeans', 'k': 12}
+n_units: 86
+features (35): ['buildtime', 'metalcost', 'energycost', 'health', 'best_dps', 'total_dps', 'max_range', 'max_aoe', 'sightdistance', 'turnrate', 'speed', 'maxacc', 'maxdec', 'maxslope', 'maxwaterdepth', 'min_range', 'n_weapons', 'techlevel', 'canmove', 'turninplace', 'has_aa', 'has_anti_sub', 'has_paralyzer', 'wt_cannon', 'wt_beamlaser', 'wt_lasercannon', 'wt_missilelauncher', 'wt_starburstlauncher', 'wt_torpedolauncher', 'wt_emgcannon', 'wt_aircraftbomb', 'wt_flame', 'wt_dgun', 'wt_shield', 'wt_other']
+
+--- cluster  0  n=1    groups={'weapon': 1}  folders={'CorGantry': 1}
+    avg: hp=335000  dps=  321  range=  590  metal=20000  speed=16.5  movers=1/1  AA=0/1  air=0/1
+    sample: Behemoth
+--- cluster  1  n=15   groups={'weapon': 15}  folders={'ArmBots': 9, 'CorBots': 6}
+    avg: hp=  1613  dps=  127  range=  514  metal=  360  speed=52.2  movers=15/15  AA=0/15  air=0/15
+    sample: Sprinter, Hound, Mace, Gunslinger, Rocketeer, Sharpshooter, Recluse, Centurion
+--- cluster  2  n=2    groups={'weapon': 2}  folders={'ArmGantry': 1, 'CorGantry': 1}
+    avg: hp=109000  dps= 1088  range=  905  metal=21250  speed=41.3  movers=2/2  AA=0/2  air=0/2
+    sample: Titan, Juggernaut
+--- cluster  3  n=3    groups={'explo': 3}  folders={'CorBots': 2, 'ArmBots': 1}
+    avg: hp=   473  dps=10000  range=   42  metal=  296  speed=81.3  movers=3/3  AA=0/3  air=0/3
+    sample: Tumbleweed, Bedbug, Skuttle
+--- cluster  4  n=20   groups={'weapon': 20}  folders={'CorVehicles': 8, 'ArmVehicles': 7}
+    avg: hp=  1383  dps=   86  range=  535  metal=  316  speed=61.8  movers=20/20  AA=0/20  air=0/20
+    sample: Crocodile, Possum, Shellshocker, Blitz, Gremlin, Mauser, Ambassador, Pincer
+--- cluster  5  n=18   groups={'weapon': 16, 'aa': 2}  folders={'CorVehicles': 6, 'ArmVehicles': 4}
+    avg: hp=  6708  dps=  269  range=  799  metal= 1703  speed=52.4  movers=18/18  AA=5/18  air=0/18
+    sample: Fatboy, Marauder, Razorback, Vanguard, Bull, Turtle, Starlight, Shredder
+--- cluster  6  n=7    groups={'weapon': 7}  folders={'ArmBots': 2, 'ArmHovercraft': 1}
+    avg: hp=   207  dps=   47  range=  194  metal=   48  speed=120.6  movers=7/7  AA=0/7  air=0/7
+    sample: Tick, Pawn, Seeker, Rover, Grunt, Goon, Rascal
+--- cluster  7  n=2    groups={'emp': 2}  folders={'ArmBots': 1, 'ArmGantry': 1}
+    avg: hp= 28555  dps=  845  range=  665  metal= 4625  speed=62.8  movers=2/2  AA=0/2  air=0/2
+    sample: Webber, Thor
+--- cluster  8  n=2    groups={'weapon': 2}  folders={'CorBots': 1, 'CorGantry': 1}
+    avg: hp=  9530  dps=  132  range=  465  metal= 3100  speed=72.8  movers=2/2  AA=1/2  air=0/2
+    sample: Fiend, Demon
+--- cluster  9  n=11   groups={'aa': 6, 'weaponaa': 4, 'weapon': 1}  folders={'ArmBots': 3, 'ArmVehicles': 3}
+    avg: hp=  1255  dps=   69  range=  792  metal=  276  speed=64.5  movers=11/11  AA=10/11  air=0/11
+    sample: Archangel, Platypus, Crossbow, Sweeper, Janus, Jaguar, Whistler, Manticore
+--- cluster 10  n=2    groups={'antinuke': 2}  folders={'ArmBots': 1, 'CorVehicles': 1}
+    avg: hp=   870  dps=  250  range=72000  metal= 1200  speed=51.0  movers=2/2  AA=0/2  air=0/2
+    sample: Umbrella, Saviour
+--- cluster 11  n=3    groups={'weapon': 2, 'weaponsub': 1}  folders={'ArmGantry': 1, 'CorBots': 1}
+    avg: hp=  3950  dps=  168  range=  567  metal=  810  speed=50.3  movers=3/3  AA=0/3  air=0/3
+    sample: Lunkhead, Duck, Cataphract

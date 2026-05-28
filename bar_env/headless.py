@@ -269,6 +269,7 @@ def launch_replay(
     speed: int = 20,
     extra_args: list[str] | None = None,
     capture_log: bool = True,
+    engine_version: str | None = None,
 ) -> HeadlessRun:
     """Launch spring-headless to play back a .sdfz with the widget in replay mode.
 
@@ -280,7 +281,7 @@ def launch_replay(
     if not replay_path.exists():
         raise FileNotFoundError(f"Replay not found: {replay_path}")
 
-    binary = headless_binary()
+    binary = headless_binary(engine_version)
     bar_data_dir = Path(bar_data_dir) if bar_data_dir else default_bar_data_dir()
     if not bar_data_dir.exists():
         raise FileNotFoundError(

@@ -1,0 +1,62 @@
+BAR unit clustering report
+model: {'model': 'kmeans', 'k': 19, 'silhouette': 0.30315493551670486}
+n_units: 377
+features (35): ['buildtime', 'metalcost', 'energycost', 'health', 'best_dps', 'total_dps', 'max_range', 'max_aoe', 'sightdistance', 'turnrate', 'speed', 'maxacc', 'maxdec', 'maxslope', 'maxwaterdepth', 'min_range', 'n_weapons', 'techlevel', 'canmove', 'turninplace', 'has_aa', 'has_anti_sub', 'has_paralyzer', 'wt_cannon', 'wt_beamlaser', 'wt_lasercannon', 'wt_missilelauncher', 'wt_starburstlauncher', 'wt_torpedolauncher', 'wt_emgcannon', 'wt_aircraftbomb', 'wt_flame', 'wt_dgun', 'wt_shield', 'wt_other']
+
+--- cluster  0  n=36   groups={'weapon': 34, 'builder': 2}  folders={'CorVehicles': 7, 'ArmBots': 6}
+    avg: hp=   893  dps=   67  range=  356  metal=  155  speed=80.9  movers=34/36  AA=0/36  air=1/36
+    sample: Banshee, Sprinter, Tick, Mace, Pawn, Rocketeer, Centurion, Sentry
+--- cluster  1  n=100  groups={'energy': 30, 'metal': 21, 'util': 21}  folders={'ArmBuildings': 52, 'CorBuildings': 48}
+    avg: hp=  3446  dps=    0  range=    0  metal= 1348  speed= 0.0  movers=28/100  AA=0/100  air=0/100
+    sample: Advanced Aircraft Plant, Advanced Solar Collector, Advanced Fusion Reactor, Advanced Geothermal Powerplant, Advanced Bot Lab, Twilight, Amphibious Complex, Aircraft Plant
+--- cluster  2  n=30   groups={'weapon': 21, 'aa': 4, 'nuke': 2}  folders={'CorBuildings': 17, 'ArmBuildings': 13}
+    avg: hp=  5980  dps=  565  range= 6259  metal= 6439  speed= 0.0  movers=0/30  AA=4/30  air=0/30
+    sample: Rattlesnake, Pulsar, Beamer, Basilica, Naval Arbalest, Manta, Arbalest, Gauntlet
+--- cluster  3  n=40   groups={'weapon': 35, 'explo': 3, 'aa': 2}  folders={'CorVehicles': 9, 'ArmBots': 7}
+    avg: hp=  4024  dps=  939  range=  657  metal= 1159  speed=68.3  movers=40/40  AA=2/40  air=4/40
+    sample: Hornet, Roughneck, Liche, Fatboy, Hound, Gunslinger, Sharpshooter, Recluse
+--- cluster  4  n=22   groups={'sub': 16, 'weaponsub': 5, 'weapon': 1}  folders={'ArmShips': 5, 'CorShips': 5}
+    avg: hp=  2710  dps=  170  range=  584  metal=  724  speed=82.8  movers=16/22  AA=0/22  air=2/22
+    sample: Cormorant, Moray, Anemone, Harpoon, Lunkhead, Puffin, Paladin, Corsair
+--- cluster  5  n=49   groups={'util': 16, 'builder': 16, 'buildert2': 12}  folders={'CorAircraft': 7, 'ArmAircraft': 6}
+    avg: hp=   803  dps=    0  range=    4  metal=  203  speed=119.8  movers=49/49  AA=0/49  air=13/49
+    sample: Advanced Construction Aircraft, Stork, Oracle, Construction Aircraft, Osprey, Blink, Smuggler, Compass
+--- cluster  6  n=2    groups={'builder': 2}  folders={'ArmBuildings': 1, 'CorBuildings': 1}
+    avg: hp=   560  dps=    0  range=    0  metal=  230  speed= 0.0  movers=0/2  AA=0/2  air=0/2
+    sample: Naval Construction Turret, Naval Construction Turret
+--- cluster  7  n=4    groups={'weapon': 3, 'buildert2': 1}  folders={'ArmGantry': 1, 'ArmSeaplanes': 1}
+    avg: hp= 18942  dps=  308  range=  578  metal= 3965  speed=80.7  movers=4/4  AA=0/4  air=0/4
+    sample: Titan, Sabre, Commando, Cataphract
+--- cluster  8  n=7    groups={'weapon': 6, 'emp': 1}  folders={'ArmAircraft': 3, 'CorAircraft': 2}
+    avg: hp=  1141  dps=  145  range= 1280  metal=  248  speed=256.8  movers=7/7  AA=0/7  air=5/7
+    sample: Blizzard, Stiletto, Stormbringer, Tsunami, Hailstorm, Whirlwind, Dam Buster
+--- cluster  9  n=8    groups={'antinuke': 6, 'weapon': 2}  folders={'ArmBuildings': 2, 'CorBuildings': 2}
+    avg: hp=  2899  dps=  438  range=62000  metal= 1188  speed=28.5  movers=4/8  AA=0/8  air=0/8
+    sample: Umbrella, Citadel, Juno, Haven, Prevailer, Juno, Oasis, Saviour
+--- cluster 10  n=9    groups={'explo': 8, 'weapon': 1}  folders={'ArmBuildings': 5, 'CorBuildings': 4}
+    avg: hp=   158  dps=    3  range=  105  metal=   63  speed= 0.0  movers=0/9  AA=0/9  air=0/9
+    sample: Dragon's Claw, Heavy Mine, Light Mine, Medium Mine, Heavy Mine, Heavy Mine, Light Mine, Medium Mine
+--- cluster 11  n=2    groups={'util': 2}  folders={'ArmBuildings': 1, 'CorBuildings': 1}
+    avg: hp=  3550  dps=    0  range=    0  metal= 3100  speed= 0.0  movers=0/2  AA=0/2  air=0/2
+    sample: Keeper, Overseer
+--- cluster 12  n=7    groups={'builder': 4, 'buildert2': 3}  folders={'ArmBots': 3, 'CorBots': 2}
+    avg: hp=   689  dps=    0  range=    0  metal=  257  speed=30.2  movers=5/7  AA=0/7  air=0/7
+    sample: Advanced Construction Bot, Construction Bot, Butler, Construction Turret, Advanced Construction Bot, Construction Bot, Construction Turret
+--- cluster 13  n=37   groups={'aa': 24, 'weapon': 7, 'weaponaa': 6}  folders={'ArmBuildings': 5, 'CorBuildings': 5}
+    avg: hp=  1995  dps=  172  range=  915  metal=  557  speed=90.9  movers=27/37  AA=36/37  air=4/37
+    sample: Falcon, Highwind, Archangel, Platypus, Crossbow, Chainsaw, Ferret, Naval Nettle
+--- cluster 14  n=4    groups={'weapon': 4}  folders={'ArmShips': 1, 'CorAircraft': 1}
+    avg: hp= 67175  dps=  499  range= 1698  metal=18775  speed=63.8  movers=4/4  AA=3/4  air=1/4
+    sample: Epoch, Dragon, Juggernaut, Black Hydra
+--- cluster 15  n=6    groups={'util': 4, '': 2}  folders={'ArmBuildings': 3, 'CorBuildings': 3}
+    avg: hp=  5383  dps=    0  range=    0  metal=   21  speed= 0.0  movers=0/6  AA=0/6  air=0/6
+    sample: Dragon's Teeth, Shark's Teeth, Fortification Wall, Dragon's Teeth, Shark's Teeth, Fortification Wall
+--- cluster 16  n=4    groups={'weapon': 4}  folders={'CorBots': 1, 'CorBuildings': 1}
+    avg: hp=  5842  dps=  121  range=  512  metal= 1780  speed=59.6  movers=3/4  AA=2/4  air=0/4
+    sample: Fiend, Dragon's Maw, Demon, Brimstone
+--- cluster 17  n=5    groups={'emp': 5}  folders={'ArmAircraft': 1, 'ArmBots': 1}
+    avg: hp= 12343  dps= 5701  range= 1144  metal= 2246  speed=126.2  movers=4/5  AA=0/5  air=2/5
+    sample: Abductor, Webber, Paralyzer, Thor, Shuriken
+--- cluster 18  n=5    groups={'buildert2': 2, 'builder': 2, 'weapon': 1}  folders={'ArmBots': 1, 'armcom.lua': 1}
+    avg: hp= 69960  dps=  219  range=  358  metal= 5384  speed=33.3  movers=5/5  AA=0/5  air=0/5
+    sample: Commander, Armada Commander, Commander, Behemoth, Cortex Commander

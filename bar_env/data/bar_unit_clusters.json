@@ -1,0 +1,214 @@
+{
+  "version": 1,
+  "generated": "2026-05-28T02:29:13.181Z",
+  "n_units": 86,
+  "n_clusters": 20,
+  "clusters": [
+    {
+      "id": 100,
+      "name": "T1 light raiders",
+      "codes": [
+        "armfast",
+        "armfav",
+        "armflash",
+        "armflea",
+        "armpw",
+        "armsh",
+        "corak",
+        "corfav",
+        "corgator",
+        "corsh"
+      ]
+    },
+    {
+      "id": 101,
+      "name": "T1 anti-air",
+      "codes": [
+        "armah",
+        "armjeth",
+        "corah",
+        "corcrash"
+      ]
+    },
+    {
+      "id": 102,
+      "name": "T1 short artillery",
+      "codes": [
+        "armart",
+        "armmh",
+        "cormh",
+        "corwolv"
+      ]
+    },
+    {
+      "id": 103,
+      "name": "T1 mid mobiles",
+      "codes": [
+        "armanac",
+        "armham",
+        "armpincer",
+        "armstump",
+        "corgarp",
+        "corraid",
+        "corsnap",
+        "corthud"
+      ]
+    },
+    {
+      "id": 104,
+      "name": "T1 rocket bots",
+      "codes": [
+        "armrock",
+        "corstorm"
+      ]
+    },
+    {
+      "id": 106,
+      "name": "T1 heavy assault",
+      "codes": [
+        "armjanus",
+        "armwar",
+        "corhal",
+        "corlevlr"
+      ]
+    },
+    {
+      "id": 200,
+      "name": "T2 EMP",
+      "codes": [
+        "armspid"
+      ]
+    },
+    {
+      "id": 201,
+      "name": "T2 mid mobiles",
+      "codes": [
+        "armfido",
+        "armlatnk",
+        "armmav",
+        "armzeus",
+        "corcan",
+        "corpyro"
+      ]
+    },
+    {
+      "id": 202,
+      "name": "T2 anti-air",
+      "codes": [
+        "armaak",
+        "armyork",
+        "coraak",
+        "corsent"
+      ]
+    },
+    {
+      "id": 203,
+      "name": "Crawling bombs",
+      "codes": [
+        "armvader",
+        "corroach",
+        "corsktl"
+      ]
+    },
+    {
+      "id": 204,
+      "name": "Mobile anti-nuke",
+      "codes": [
+        "armscab",
+        "cormabm"
+      ]
+    },
+    {
+      "id": 205,
+      "name": "T2 heavy assault",
+      "codes": [
+        "armbull",
+        "corgol",
+        "correap",
+        "corsumo"
+      ]
+    },
+    {
+      "id": 206,
+      "name": "T2 amphibious",
+      "codes": [
+        "armamph",
+        "armcroc",
+        "coramph",
+        "corparrow",
+        "corsala"
+      ]
+    },
+    {
+      "id": 208,
+      "name": "T2 long-range artillery",
+      "codes": [
+        "armfboy",
+        "armmanni",
+        "armmart",
+        "armmerl",
+        "armsnipe",
+        "corban",
+        "corhrk",
+        "cormart",
+        "cormort",
+        "cortrem",
+        "corvroc"
+      ]
+    },
+    {
+      "id": 300,
+      "name": "T3 experimental",
+      "codes": [
+        "armbanth",
+        "armthor",
+        "corkorg"
+      ]
+    },
+    {
+      "id": 301,
+      "name": "T3 all die to Razors",
+      "codes": [
+        "armlun",
+        "armmar",
+        "armraz",
+        "cordemon",
+        "corkarg",
+        "corshiva",
+        "corsok"
+      ]
+    },
+    {
+      "id": 302,
+      "name": "T3 long-range",
+      "codes": [
+        "armvang",
+        "corcat"
+      ]
+    },
+    {
+      "id": 900,
+      "name": "Behe",
+      "codes": [
+        "corjugg"
+      ]
+    },
+    {
+      "id": 901,
+      "name": "Missile Truck",
+      "codes": [
+        "armsam",
+        "cormist"
+      ]
+    },
+    {
+      "id": 902,
+      "name": "specific Response",
+      "codes": [
+        "armgremlin",
+        "armsptk",
+        "cortermite"
+      ]
+    }
+  ]
+}

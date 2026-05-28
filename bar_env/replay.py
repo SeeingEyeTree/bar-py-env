@@ -91,6 +91,10 @@ def gametype_to_rapid_tag(gametype: str) -> str | None:
     """Map a `gametype` string back to a rapid-resolvable tag.
 
     "Beyond All Reason test-30154-d7430fc" -> "byar:test-30154-d7430fc"
+
+    NOTE: the produced tag is NOT a real RAPID tag — use
+    resolve_gametype_rapid_tag() when you need the actual byar:git:HASH tag
+    for pr-downloader.
     """
     if not gametype:
         return None
@@ -98,6 +102,61 @@ def gametype_to_rapid_tag(gametype: str) -> str | None:
     prefix = "Beyond All Reason "
     if g.lower().startswith(prefix.lower()):
         return "byar:" + g[len(prefix):]
+    return None
+
+
+_RAPID_CDN_VERSIONS_URL = "https://repos-cdn.beyondallreason.dev/byar/versions.gz"
+_LOCAL_VERSIONS_GZ = Path("rapid/repos-cdn.beyondallreason.dev/byar/versions.gz")
+_USER_AGENT = "bar-py-env/0.0.1"
+
+
+def resolve_gametype_rapid_tag(gametype: str, bar_data_dir: Path) -> str | None:
+    """Return the exact byar:git:HASH rapid tag for a gametype display string.
+
+    Searches the local BAR versions.gz cache first (fast, no network).
+    Falls back to fetching the remote versions.gz from the BAR CDN.
+    Returns None if not found anywhere (very old version may have been purged).
+    """
+    import io
+    import urllib.request as _ur
+
+    target = gametype.strip()
+
+    def _search(source: Path | bytes) -> str | None:
+        try:
+            if isinstance(source, bytes):
+                f = gzip.open(io.BytesIO(source), "rt", encoding="utf-8", errors="ignore")
+            else:
+                f = gzip.open(source, "rt", encoding="utf-8", errors="ignore")
+            with f:
+                for line in f:
+                    parts = line.rstrip("\r\n").split(",", 3)
+                    if len(parts) >= 4 and parts[3].strip() == target:
+                        return parts[0].strip()
+        except OSError:
+            pass
+        return None
+
+    # 1. Local cache (fast, no network required)
+    local = bar_data_dir / _LOCAL_VERSIONS_GZ
+    if local.exists():
+        tag = _search(local)
+        if tag:
+            return tag
+
+    # 2. Remote BAR CDN (full history, ~600 KB gzipped)
+    try:
+        print(f"  fetching remote versions.gz to resolve '{gametype}' ...")
+        req = _ur.Request(_RAPID_CDN_VERSIONS_URL, headers={"User-Agent": _USER_AGENT})
+        with _ur.urlopen(req, timeout=30) as resp:
+            raw = resp.read()
+        tag = _search(raw)
+        if tag:
+            return tag
+        print(f"  [warn] '{gametype}' not found in CDN versions.gz — version may be purged from CDN")
+    except Exception as exc:
+        print(f"  [warn] could not fetch remote versions.gz: {exc}")
+
     return None
 
 
@@ -165,6 +224,9 @@ class ReplayExtractorConfig:
     # Write a compact JSONL: map info moved to a one-time header line,
     # redundant fields dropped, numeric precision reduced.
     compact: bool = True
+    # Spring engine version to use (e.g. "2025.06.24"). When set, selects the
+    # matching binary from ENGINE_DIR; falls back to the latest installed engine.
+    engine_version: str | None = None
 
 
 # ---------------------------------------------------------------------------
@@ -321,7 +383,11 @@ def extract(cfg: ReplayExtractorConfig) -> dict[str, Any]:
                 if installed and gtype == installed:
                     print("  pre-flight    : skipped (demo matches installed version)")
                 else:
-                    ensure_game_archive(rapid_tag, bar_data)
+                    # Resolve the real byar:git:HASH tag before calling pr-downloader.
+                    # gametype_to_rapid_tag() produces fabricated tags that pr-downloader
+                    # can't find, causing it to fall back to the wrong CDN.
+                    real_tag = resolve_gametype_rapid_tag(gtype, bar_data)
+                    ensure_game_archive(real_tag or rapid_tag, bar_data)
             else:
                 print(f"  [warn] could not extract gametype from {cfg.replay_path}; "
                       f"skipping pre-flight archive fetch.")
@@ -345,6 +411,7 @@ def extract(cfg: ReplayExtractorConfig) -> dict[str, Any]:
             step_interval=cfg.step_interval,
             max_steps=cfg.max_steps,
             speed=cfg.speed,
+            engine_version=cfg.engine_version,
         )
 
         # 3. accept the widget's connection -- but bail out fast if the engine

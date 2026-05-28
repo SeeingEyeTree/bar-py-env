@@ -61,7 +61,7 @@ def find_seven_zip() -> str:
         "and ensure 7z.exe is on PATH."
     )
     '''
-    return "C:/Program Files/7-Zip"
+    return "C:/Program Files/7-Zip/7z.exe"
 
 
 def download(url: str, dest: Path) -> None:

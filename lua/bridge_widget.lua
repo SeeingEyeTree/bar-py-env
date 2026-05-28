@@ -364,7 +364,7 @@ local function build_observation_replay(frame, done, result, commands_this_frame
                     if at ~= unit_ally then
                         if Spring.IsUnitInLos(uid, at) then
                             los_list[#los_list + 1] = at
-                        elseif Spring.IsUnitOnRadar(uid, at) then
+                        elseif Spring.IsUnitOnRadar and Spring.IsUnitOnRadar(uid, at) then
                             radar_list[#radar_list + 1] = at
                         end
                     end
