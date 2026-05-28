@@ -59,7 +59,9 @@
       "Bash(python /tmp/detailed_header.py)",
       "PowerShell(Get-Content \"C:\\\\Users\\\\malco\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-malco-OneDrive-Documents-GitHub-bar-py-env\\\\ee2572d9-f638-4dfe-a69d-fe759ed812a1\\\\tasks\\\\ba646fit4.output\" -Wait -Tail 30)",
       "PowerShell(cd \"c:\\\\Users\\\\malco\\\\OneDrive\\\\Documents\\\\GitHub\\\\bar-py-env\"; $env:PYTHONIOENCODING=\"utf-8\"; .\\\\.venv\\\\Scripts\\\\python.exe -u scripts/train_bc.py --epochs 100 2>&1)",
-      "Bash(.venv/Scripts/python -u scripts/bc_bot.py --enemy-ai SimpleAI --side Cortex)"
+      "Bash(.venv/Scripts/python -u scripts/bc_bot.py --enemy-ai SimpleAI --side Cortex)",
+      "Bash(Select-Object Name)",
+      "PowerShell(Get-ChildItem \"c:\\\\Users\\\\malco\\\\OneDrive\\\\Documents\\\\GitHub\\\\bar-py-env\" -Force | ForEach-Object { $_.Name })"
     ],
     "additionalDirectories": [
       "\\tmp",

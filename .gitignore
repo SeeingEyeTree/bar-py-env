@@ -14,6 +14,14 @@ venv/
 .pytest_cache/
 .ruff_cache/
 
+# Trained model artifacts
+*.pt
+*.npz
+bc_train_stats.json
+
+# Claude Code project files (memory, plans, task logs)
+.claude/
+
 # Editors / OS
 .vscode/
 .idea/
